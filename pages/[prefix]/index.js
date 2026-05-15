@@ -5,6 +5,7 @@ import { siteConfig } from '@/lib/config'
 import { resolvePostProps } from '@/lib/db/SiteDataApi'
 import { useGlobal } from '@/lib/global'
 import { getPageTableOfContents } from '@/lib/db/notion/getPageTableOfContents'
+import { isExport } from '@/lib/utils/buildMode'
 import {
   getPasswordQuery,
   getPasswordStoragePath,

@@ -2,9 +2,12 @@ import BLOG from '@/blog.config'
 import { siteConfig } from '@/lib/config'
 import { resolvePostProps } from '@/lib/db/SiteDataApi'
 import Slug from '..'
-import { checkSlugHasOneSlash } from '@/lib/utils/post'
 import { getStaticPathsBase } from '@/lib/build/staticPaths'
 import { isExport } from '@/lib/utils/buildMode'
+import { checkSlugHasOneSlash } from '@/lib/utils/post'
+
+const isStaticExport = process.env.EXPORT === 'true'
+
 /**
  * 根据notion的slug访问页面
  * 解析二级目录 /article/about
@@ -37,7 +40,7 @@ export async function getStaticProps({ params: { prefix, slug }, locale }) {
 
   return {
     props,
-    revalidate: isExport()
+    revalidate: isStaticExport
       ? undefined
       : siteConfig(
         'NEXT_REVALIDATE_SECOND',
